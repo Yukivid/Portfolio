@@ -27,7 +27,7 @@ const projects = [
     title: "Farm-X-Change Portfolio",
     desc: "Frontend portfolio for farmer-distributor marketplace.",
     tech: ["HTML", "CSS", "JavaScript"],
-    repo: "https://github.com/Yukivid/FarmXChangePortfolio",
+    repo: "https://github.com/Yukivid/FarmXChange_Portfolio",
   },
 ];
 
@@ -55,4 +55,5 @@ projects.forEach((p) => {
 
 // Update year
 document.getElementById("year").textContent = new Date().getFullYear();
+
 
