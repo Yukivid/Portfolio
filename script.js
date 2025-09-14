@@ -9,7 +9,7 @@ const projects = [
     title: "MeetMate – AI Meeting Assistant",
     desc: "Transcribes meetings, generates minutes, and auto-schedules follow-ups with GPT.",
     tech: ["Python", "Streamlit", "Azure Speech", "GPT-4o"],
-    repo: "https://github.com/Yukivid/MeetMate",
+    repo: "https://github.com/Yukivid/Meet_Mate",
   },
   {
     title: "AskLegal.ai – AI Legal Assistant",
@@ -55,3 +55,4 @@ projects.forEach((p) => {
 
 // Update year
 document.getElementById("year").textContent = new Date().getFullYear();
+
