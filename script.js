@@ -15,7 +15,7 @@ const projects = [
     title: "AskLegal.ai – AI Legal Assistant",
     desc: "Legal chatbot using RAG over IPC & court cases.",
     tech: ["Python", "Streamlit", "RAG", "Redis"],
-    repo: "https://asklegal-ai-ai-legal-assistant.onrender.com/",
+    repo: "https://github.com/Yukivid/AILegalAssistant",
   },
   {
     title: "IoT Water Quality Monitoring",
@@ -55,6 +55,7 @@ projects.forEach((p) => {
 
 // Update year
 document.getElementById("year").textContent = new Date().getFullYear();
+
 
 
 
