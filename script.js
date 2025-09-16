@@ -9,13 +9,13 @@ const projects = [
     title: "MeetMate – AI Meeting Assistant",
     desc: "Transcribes meetings, generates minutes, and auto-schedules follow-ups with GPT.",
     tech: ["Python", "Streamlit", "Azure Speech", "GPT-4o"],
-    repo: "https://github.com/Yukivid/Meet_Mate",
+    repo: "https://github.com/Yukivid/MeetMate",
   },
   {
     title: "AskLegal.ai – AI Legal Assistant",
     desc: "Legal chatbot using RAG over IPC & court cases.",
     tech: ["Python", "Streamlit", "RAG", "Redis"],
-    repo: "https://github.com/Yukivid/AILegalAssistant",
+    repo: "https://asklegal-ai-ai-legal-assistant.onrender.com/",
   },
   {
     title: "IoT Water Quality Monitoring",
@@ -24,10 +24,16 @@ const projects = [
     repo: "https://github.com/Yukivid/Water-Quality-prediction-BPA-prediction",
   },
   {
+    title: "EVXpert – AI EV Companion App",
+    desc: "AI-powered EV app for battery health, predictive maintenance, trip planning, and vehicle security.",
+    tech: ["Python", "TensorFlow", "Scikit-learn", "React Native", "AES Encryption"],
+    repo: "https://github.com/Yukivid/EVXpert_EV_companion",
+  },
+  {
     title: "Farm-X-Change Portfolio",
     desc: "Frontend portfolio for farmer-distributor marketplace.",
     tech: ["HTML", "CSS", "JavaScript"],
-    repo: "https://github.com/Yukivid/FarmXChange_Portfolio",
+    repo: "https://github.com/Yukivid/FarmXChangePortfolio",
   },
 ];
 
@@ -53,9 +59,50 @@ projects.forEach((p) => {
   projectList.appendChild(card);
 });
 
+// === Achievements Section ===
+const achievements = [
+  {
+    title: "Patent Publication – Sep 2025",
+    detail: "IoT & ML-based Unauthorized Animal Detection System (App. No. 202541079463).",
+  },
+  {
+    title: "Raptee CodeVolt’25 Semifinalist",
+    detail: "AI-powered EV Companion App for predictive maintenance & vehicle security.",
+  },
+  {
+    title: "GPT4o: Code & Conquer – Nov 2024",
+    detail: "Certification for applied problem-solving & AI model fine-tuning.",
+  },
+  {
+    title: "AWS Certified Cloud Practitioner, Solutions Architect & Developer – Jun 2025",
+    detail: "Completed Udemy certifications in AWS fundamentals, architecture & development.",
+  },
+  {
+    title: "Spoken Tutorial – IIT Bombay",
+    detail: "Certifications in C, C++ & Python under IIT Bombay Spoken Tutorial program.",
+  },
+];
+
+const achievementsSection = document.createElement("section");
+achievementsSection.id = "achievements";
+achievementsSection.className = "mt-12";
+
+achievementsSection.innerHTML = `
+  <h3 class="text-2xl font-semibold mb-6">Achievements & Certifications</h3>
+  <div class="bg-white p-6 rounded-lg shadow-sm space-y-3">
+    ${achievements.map(a => `
+      <div>
+        <div class="font-semibold">${a.title}</div>
+        <div class="text-sm text-gray-700">${a.detail}</div>
+      </div>
+    `).join("")}
+  </div>
+`;
+
+
+const skillsSection = document.getElementById("skills");
+skillsSection.insertAdjacentElement("afterend", achievementsSection);
+
+
 // Update year
 document.getElementById("year").textContent = new Date().getFullYear();
-
-
-
-
