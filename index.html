@@ -847,7 +847,7 @@
 
     fadeSections.forEach((el) => observer.observe(el));
     fadeStaggers.forEach((el) => observer.observe(el));
-    const OFFSET = 90; // adjust if needed based on your sticky navbar height
+    let OFFSET = window.innerWidth < 640 ? 50 : 90; // adjust if needed based on your sticky navbar height
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
@@ -873,4 +873,5 @@
 
 </body>
 </html>
+
 
