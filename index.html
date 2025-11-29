@@ -1,188 +1,874 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deepesh Raj A Y | Portfolio</title>
-  <!-- Tailwind CDN -->
+
+  <!-- Load Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind config (NO fontFamily here now) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#51ACC5',
+            'bg-main': '#050816',
+            'bg-card': '#0B1020',
+            'bg-soft': '#080C18',
+          },
+          boxShadow: {
+            soft: '0 8px 22px rgba(0,0,0,0.35)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Global styles + animations -->
+  <style>
+    body {
+      font-family: 'Sora', sans-serif;
+      background:
+      radial-gradient(circle at top left, #0c1c2a 0, #050816 45%, #020617 100%);
+    }
+
+    /* Decorative hero frame */
+    .hero-frame::before,
+    .hero-frame::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border: 1px solid rgba(148, 163, 253, 0.10);
+      border-radius: 22px;
+    }
+    .hero-frame::before {
+      top: -40px;
+      left: -40px;
+    }
+    .hero-frame::after {
+      bottom: -40px;
+      right: -40px;
+    }
+    .hero-grid-line {
+      position: absolute;
+      inset: 18%;
+      border-radius: 22px;
+      border: 1px dashed rgba(148, 163, 253, 0.08);
+    }
+
+    .pill-badge {
+      background: linear-gradient(135deg, rgba(148,163,253,0.08), rgba(37,99,235,0.12));
+      border: 1px solid rgba(148,163,253,0.2);
+    }
+
+    .skill-card {
+      background: #0B1020;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 253, 0.18);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(148, 163, 253, 0.35);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.55);
+    }
+
+    .skill-circle {
+      background: linear-gradient(to bottom right, #66d7eb, #3e849e);
+    }
+
+    .project-card {
+      background: #0B1020;
+      border-radius: 20px;
+      border: 1px solid rgba(148,163,253,0.18);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transform-origin: center top;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(66,228,255,0.45);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.6);
+    }
+
+    .contact-strip {
+      background: #0A0F1F;
+      border-radius: 30px;
+      border: 1px solid rgba(148,163,253,0.18);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+
+    /* Nav link underline microinteraction */
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background: #51ACC5;
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Button press microinteraction */
+    .btn-tap {
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-tap:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    /* Scroll fade-up animation (moderate) */
+    .js-fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .js-fade.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slight stagger for children, if needed */
+    .js-fade-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .js-fade-stagger.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .js-fade-stagger.is-visible > *:nth-child(1) { transition-delay: 0.02s; }
+    .js-fade-stagger.is-visible > *:nth-child(2) { transition-delay: 0.06s; }
+    .js-fade-stagger.is-visible > *:nth-child(3) { transition-delay: 0.10s; }
+    .js-fade-stagger.is-visible > *:nth-child(4) { transition-delay: 0.14s; }
+  </style>
+
+  <!-- GitHub Icon Definition -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <symbol id="github-icon" viewBox="0 0 24 24">
+      <path fill="currentColor"
+        d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.95.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.3 1.2-3.11-.12-.3-.52-1.52.11-3.17 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 5.8 0c2.2-1.5 3.17-1.19 3.17-1.19.64 1.65.23 2.87.11 3.17.75.82 1.2 1.85 1.2 3.11 0 4.44-2.69 5.4-5.25 5.68.42.36.77 1.06.77 2.15v3.19c0 .31.2.67.79.55A10.99 10.99 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z" />
+    </symbol>
+  </svg>
+
 </head>
-<body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
-  <!-- Header -->
-  <header class="bg-white shadow-sm sticky top-0 z-30">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+<body class="min-h-screen text-slate-100 antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-30 border-b border-white/5 bg-bg-main/80 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center text-white font-semibold">DR</div>
-        <div>
-          <h1 class="text-lg font-semibold">Deepesh Raj A Y</h1>
-          <p class="text-xs text-gray-500">AI & ML • Web • Computer Vision</p>
+        <div class="w-11 h-11 rounded-2xl bg-[#51ACC5] flex items-center justify-center text-bg-main font-semibold text-lg btn-tap">
+          DR
+        </div>
+        <div class="leading-tight">
+          <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Portfolio</p>
+          <h1 class="text-sm sm:text-base font-medium font-['Space_Grotesk']">
+            Deepesh Raj A Y
+          </h1>
         </div>
       </div>
-      <nav class="hidden md:flex items-center gap-4 text-sm">
-        <a href="#about" class="hover:text-indigo-600">About</a>
-        <a href="#projects" class="hover:text-indigo-600">Projects</a>
-        <a href="#experience" class="hover:text-indigo-600">Experience</a>
-        <a href="#skills" class="hover:text-indigo-600">Skills</a>
-        <a href="#contact" class="bg-indigo-600 text-white px-3 py-2 rounded-md text-sm hover:opacity-95">Contact</a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+        <a href="#about" class="nav-link hover:text-primary transition-colors">About</a>
+        <a href="#experience" class="nav-link hover:text-primary transition-colors">Experience</a>
+        <a href="#skills" class="nav-link hover:text-primary transition-colors">Skills</a>
+        <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
+        <a href="#achievements" class="nav-link hover:text-primary transition-colors">Achievements</a>
+        <a href="#contact" class="pill-badge px-4 py-2 rounded-full text-xs font-medium text-slate-50 transition-colors btn-tap">
+          Contact
+        </a>
+      </nav>
+
+      <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-xl border border-white/15 text-slate-200 btn-tap">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h10" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobileNav" class="md:hidden hidden border-t border-white/5 bg-bg-main/95 backdrop-blur font-['Space_Grotesk'] origin-top scale-y-95 opacity-0 transition-all duration-200 ease-out">
+      <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm text-slate-200">
+        <a href="#about" class="py-1">About</a>
+        <a href="#experience" class="py-1">Experience</a>
+        <a href="#skills" class="py-1">Skills</a>        
+        <a href="#projects" class="py-1">Projects</a>
+        <a href="#achievements" class="py-1">Achievements</a>
+        <a href="#contact" class="py-1">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="max-w-6xl mx-auto px-6 py-12">
-    <!-- Hero -->
-    <section class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <p class="text-sm text-indigo-600 font-medium mb-2">Hello — I’m</p>
-        <h2 class="text-4xl font-bold leading-tight">Deepesh Raj A Y</h2>
-        <p class="mt-4 text-gray-700 max-w-xl">
-          Motivated Computer Science student at VIT Chennai (B.Tech, 2022-26). I build practical AI & web
-          applications — computer vision pipelines, meeting assistants, legal chatbots, and IoT systems.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="A Y Deepesh Raj.pdf" target="_blank" download class="inline-block border border-indigo-600 text-indigo-600 px-4 py-2 rounded-md text-sm"> Download Resume</a>
-          <a href="https://github.com/Yukivid" target="_blank" class="inline-block bg-gray-900 text-white px-4 py-2 rounded-md text-sm">GitHub</a>
-          <a href="https://linkedin.com/in/deepesh-raj-a-y-915266271" target="_blank" class="inline-block border border-gray-300 px-4 py-2 rounded-md text-sm">LinkedIn</a>
-        </div>
-        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <div class="p-4 bg-white rounded-lg shadow-sm">
-            <div class="text-xs text-gray-500">Education</div>
-            <div class="mt-1 font-semibold">B.Tech • VIT Chennai</div>
-          </div>
-          <div class="p-4 bg-white rounded-lg shadow-sm">
-            <div class="text-xs text-gray-500">CGPA</div>
-            <div class="mt-1 font-semibold">8.2 / 10</div>
-          </div>
-          <div class="p-4 bg-white rounded-lg shadow-sm">
-            <div class="text-xs text-gray-500">Primary Stack</div>
-            <div class="mt-1 font-semibold">Python, ML, CV</div>
-          </div>
-          <div class="p-4 bg-white rounded-lg shadow-sm">
-            <div class="text-xs text-gray-500">Location</div>
-            <div class="mt-1 font-semibold">Chennai, India</div>
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center justify-center">
-        <div class="w-full max-w-md bg-gradient-to-b from-white to-gray-50 rounded-2xl shadow-lg p-6">
-          <div class="h-56 rounded-xl bg-gradient-to-br from-indigo-100 to-pink-50 flex items-center justify-center">
-            <div class="text-center p-4">
-              <div class="w-24 h-24 rounded-full bg-indigo-600 text-white flex items-center justify-center mx-auto font-semibold">DR</div>
-              <p class="mt-4 text-sm text-gray-600">I build models and user-centric applications — from data pipelines to production UI.</p>
+  <!-- MAIN CONTENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-16 space-y-20 md:space-y-24">
+
+    <!-- HERO -->
+    <section id="about" class="relative js-fade scroll-mt-24">
+      <div class="hero-frame relative overflow-hidden rounded-3xl border border-white/10 bg-bg-soft px-6 py-10 sm:px-10 sm:py-12 shadow-soft">
+
+        <div class="hero-grid-line hidden sm:block"></div>
+
+        <div class="grid md:grid-cols-1 gap-10 items-center">
+
+          <!-- LEFT -->
+          <div class="js-fade-stagger">
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Hello, I'm</p>
+
+            <h2 class="mt-4 text-[2.4rem] font-['Space_Grotesk'] font-semibold">
+              Deepesh Raj A Y
+            </h2>
+
+            <h3 class="mt-2 text-[2rem] font-['Space_Grotesk'] font-semibold text-primary">
+              AI & ML • Web • Computer Vision
+            </h3>
+
+            <p class="mt-5 text-sm text-slate-300 text-justify">
+              Welcome to my portfolio! I’m an aspiring Software Engineer specializing in AI/ML, currently pursuing my B.Tech in Computer Science and Engineering at VIT Chennai. I work on building LLM-driven systems, agentic AI workflows, predictive models, and computer vision pipelines, with hands-on experience in RAG, NLP, CNN , and AI-powered applications.
+            </p>
+            <p class="mt-5 text-sm text-slate-300 text-justify">
+              Here, you’ll find my projects in machine learning, deep learning, computer vision, and intelligent automation. I’m driven by problem-solving, clean system design, and building reliable, production-ready AI solutions. I enjoy creating solutions that are intuitive, scalable, and impactful.
+            </p>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="A Y Deepesh Raj.pdf" target="_blank" download
+                 class="pill-badge text-xs px-4 py-2.5 rounded-full font-medium text-slate-50 flex items-center gap-2 btn-tap">
+                Download Resume
+              </a>
+
+              <a href="https://github.com/Yukivid" target="_blank"
+                 class="px-4 py-2.5 rounded-full border border-slate-600/50 text-xs text-slate-200 hover:border-primary hover:text-primary transition-colors btn-tap">
+                GitHub
+              </a>
+
+              <a href="https://linkedin.com/in/deepesh-raj-a-y-915266271" target="_blank"
+                 class="px-4 py-2.5 rounded-full border border-slate-600/50 text-xs text-slate-200 hover:border-primary hover:text-primary transition-colors btn-tap">
+                LinkedIn
+              </a>
+            </div>
+
+            <!-- stats -->
+            <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <div class="rounded-xl bg-bg-card border border-white/10 px-4 py-3 shadow-soft">
+                <p class="text-[0.6rem] uppercase tracking-[0.18em] text-slate-400">Education</p>
+                <p class="mt-2 font-medium">B.Tech CSE • VIT Chennai</p>
+              </div>
+              <div class="rounded-xl bg-bg-card border border-white/10 px-4 py-3 shadow-soft">
+                <p class="text-[0.6rem] uppercase tracking-[0.18em] text-slate-400">CGPA</p>
+                <p class="mt-2 font-medium">8.2 / 10</p>
+              </div>
+              <div class="rounded-xl bg-bg-card border border-white/10 px-4 py-3 shadow-soft">
+                <p class="text-[0.6rem] uppercase tracking-[0.18em] text-slate-400">Primary Stack</p>
+                <p class="mt-2 font-medium">Python, ML, CV</p>
+              </div>
+              <div class="rounded-xl bg-bg-card border border-white/10 px-4 py-3 shadow-soft">
+                <p class="text-[0.6rem] uppercase tracking-[0.18em] text-slate-400">Location</p>
+                <p class="mt-2 font-medium">Chennai, India</p>
+              </div>
             </div>
           </div>
-          <div class="mt-6 grid grid-cols-2 gap-4">
-            <div class="p-3 bg-white rounded-lg text-center">
-              <div class="text-xs text-gray-400">Internship</div>
-              <div class="font-semibold">FLSmidth</div>
-            </div>
-            <div class="p-3 bg-white rounded-lg text-center">
-              <div class="text-xs text-gray-400">Hackathon</div>
-              <div class="font-semibold">Raptee CodeVolt’25 (Semi)</div>
-            </div>
-          </div>
+
         </div>
+
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="mt-12 grid md:grid-cols-3 gap-8">
-      <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-sm">
-        <h3 class="text-2xl font-semibold">About Me</h3>
-        <p class="mt-4 text-gray-700">
-          I’m a motivated and detail-oriented aspiring Computer Science engineer with a solid foundation in data
-          structures, algorithms, and databases. I enjoy building end-to-end systems that bring ML models to users.
-        </p>
-        <h4 class="mt-6 text-lg font-semibold">Experience</h4>
-        <div class="mt-3 space-y-3">
-          <div class="p-4 bg-gray-50 rounded-md">
-            <div class="font-semibold">Software Developer Intern</div>
-            <div class="text-sm text-gray-500">FLSmidth — June–Aug 2024</div>
-            <ul class="mt-3 text-sm text-gray-700 list-disc pl-5 space-y-1">
-              <li>Built image processing pipelines for defect detection.</li>
-              <li>Automated anomaly localization with OpenCV watershed.</li>
-              <li>Explored 3D reconstruction with COLMAP, Meshroom.</li>
+    <!-- ABOUT + QUICK FACTS (you named both columns Education/Experience but content is same; leaving structure) -->
+    <section id="experience" class="grid md:grid-cols-2 gap-10 js-fade scroll-mt-24">
+
+      <div class="rounded-3xl bg-bg-card border border-white/10 p-7 shadow-soft js-fade-stagger">
+
+        <h3 class="text-2xl font-['Space_Grotesk'] font-semibold">Education</h3>
+
+        <div id="experience" class="mt-7">
+          <div class="mt-4 rounded-2xl bg-bg-soft border border-white/10 p-4 shadow-soft">
+            <p class="text-sm font-semibold">High School Diploma (2008 - 2022)</p>
+            <p class="text-xs text-slate-400 mt-0.5">Alwin Memorial Public School, Chennai, Tamil Nadu, India.</p>
+            <ul class="mt-3 text-xs text-slate-300 space-y-1.5 list-disc pl-5">
+              <li>CBSE Board - 12 th - 85.4%.</li>
+              <li>CBSE Board - 10 th - 86%.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="experience" class="mt-7">
+          <div class="mt-4 rounded-2xl bg-bg-soft border border-white/10 p-4 shadow-soft">
+            <p class="text-sm font-semibold">B.Tech in Computer Science and Engineering (2022 - 2026)</p>
+            <p class="text-xs text-slate-400 mt-0.5">Vellore Institute of Technology, Chennai, Tamil Nadu, India.</p>
+            <ul class="mt-3 text-xs text-slate-300 space-y-1.5 list-disc pl-5">
+              <li>CGPA - 8.21 .</li>
             </ul>
           </div>
         </div>
       </div>
-      <aside class="bg-white p-6 rounded-lg shadow-sm">
-        <h4 class="text-lg font-semibold">Quick Facts</h4>
-        <div class="mt-4 space-y-2 text-sm text-gray-700">
-          <div><strong>Email:</strong> deepeshrajay@gmail.com</div>
-          <div><strong>GitHub:</strong> github.com/Yukivid</div>
-          <div><strong>LinkedIn:</strong> /in/deepesh-raj-a-y-915266271</div>
-          <div><strong>Degree:</strong> B.Tech, CSE (2022–26)</div>
+
+      <div class="rounded-3xl bg-bg-card border border-white/10 p-7 shadow-soft js-fade-stagger">
+
+        <h3 class="text-2xl font-['Space_Grotesk'] font-semibold" id="experience">Experience</h3>
+
+        <div class="mt-7">
+          <div class="mt-4 rounded-2xl bg-bg-soft border border-white/10 p-4 shadow-soft">
+            <p class="text-sm font-semibold">Software Developer Intern</p>
+            <p class="text-xs text-slate-400 mt-0.5">FLSmidth — June–Aug 2024</p>
+            <ul class="mt-3 text-xs text-slate-300 space-y-1.5 list-disc pl-5">
+              <li>Built image processing pipelines for defect detection.</li>
+              <li>Automated anomaly localization with OpenCV watershed.</li>
+              <li>Explored 3D reconstruction with COLMAP & Meshroom.</li>
+            </ul>
+          </div>
         </div>
-      </aside>
+
+        
+      </div>
+
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="mt-12">
-      <h3 class="text-2xl font-semibold">Projects</h3>
-      <p class="mt-2 text-gray-600">Selected projects — source code linked.</p>
-      <div id="project-list" class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
-    </section>
+    <!-- SKILLS -->
+    <section id="skills" class="space-y-8 js-fade scroll-mt-24">
+      <h3 class="text-3xl font-['Space_Grotesk'] font-semibold">Key Skills</h3>
 
-    <!-- Skills -->
-<section id="skills" class="mt-12">
-  <h3 class="text-2xl font-semibold mb-6">Skills</h3>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="bg-white p-6 rounded-lg shadow-sm">
-      <h4 class="font-semibold">Core Skills</h4>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700 list-disc pl-5">
-        <li>Python, Java, C, C++</li>
-        <li>Machine Learning, NLP, Transformers</li>
-        <li>OpenCV, PyTorch, TensorFlow</li>
-        <li>HTML, CSS, JavaScript, React</li>
-      </ul>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-sm">
-      <h4 class="font-semibold">Tools & Cloud</h4>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700 list-disc pl-5">
-        <li>Azure AI, AWS, Streamlit, Render</li>
-        <li>Redis, Git, Docker</li>
-        <li>Power BI, Tableau, Figma</li>
-      </ul>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-sm">
-      <h4 class="font-semibold">Soft Skills</h4>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700 list-disc pl-5">
-        <li>Problem Solving • Team Collaboration</li>
-        <li>Project Management • Communication</li>
-      </ul>
-    </div>
-  </div>
-</section>
+      <div class="grid md:grid-cols-3 gap-6 js-fade-stagger">
 
-
-    <!-- Contact -->
-    <section id="contact" class="mt-12 bg-white p-6 rounded-lg shadow-sm">
-      <h3 class="text-2xl font-semibold">Contact</h3>
-      <p class="mt-3 text-gray-700">I’m open to internships and collaborations. Reach out!</p>
-      <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <div>
-          <p class="text-sm"><strong>Email:</strong> deepeshrajay@gmail.com</p>
-          <p class="mt-2 text-sm"><strong>GitHub:</strong> <a href="https://github.com/Yukivid" target="_blank" class="text-indigo-600">github.com/Yukivid</a></p>
-          <p class="mt-2 text-sm"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/deepesh-raj-a-y-915266271" target="_blank" class="text-indigo-600">linkedin.com/in/deepesh-raj-a-y-915266271</a></p>
+        <div class="skill-card p-6">
+          <div class="flex items-center gap-4">
+            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+              Core
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold font-['Space_Grotesk']">Programming</h4>
+              <p class="text-xs text-slate-300">DSA & OOP foundations.</p>
+            </div>
+          </div>
+          <ul class="mt-4 text-xs text-slate-200 list-disc pl-5 space-y-1.5">
+            <li>Python, Java, C, C++</li>
+          </ul>
         </div>
-        <form class="space-y-3">
-          <input class="w-full rounded-md border-gray-200 shadow-sm p-2" placeholder="Your Name" />
-          <input class="w-full rounded-md border-gray-200 shadow-sm p-2" placeholder="Your Email" />
-          <textarea class="w-full rounded-md border-gray-200 shadow-sm p-2" rows="4" placeholder="Message"></textarea>
-          <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded-md">Send</button>
-        </form>
+
+        <div class="skill-card p-6">
+          <div class="flex items-center gap-4">
+            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+              ML
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold font-['Space_Grotesk']">Machine Learning</h4>
+              <p class="text-xs text-slate-300">Model pipelines.</p>
+            </div>
+          </div>
+          <ul class="mt-4 text-xs text-slate-200 list-disc pl-5 space-y-1.5">
+            <li>ML, NLP, Transformers</li>
+            <li>PyTorch, TensorFlow</li>
+          </ul>
+        </div>
+
+        <div class="skill-card p-6">
+          <div class="flex items-center gap-4">
+            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+              CV
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold font-['Space_Grotesk']">Computer Vision</h4>
+              <p class="text-xs text-slate-300">Imaging & CV pipelines.</p>
+            </div>
+          </div>
+          <ul class="mt-4 text-xs text-slate-200 list-disc pl-5 space-y-1.5">
+            <li>OpenCV, image processing</li>
+            <li>HTML, CSS, JS, React</li>
+          </ul>
+        </div>
+
+        <div class="skill-card p-6">
+          <div class="flex items-center gap-4">
+            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+              Dev
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold font-['Space_Grotesk']">Cloud & Dev Tools</h4>
+              <p class="text-xs text-slate-300">Deployable systems.</p>
+            </div>
+          </div>
+          <ul class="mt-4 text-xs text-slate-200 list-disc pl-5 space-y-1.5">
+            <li>Azure AI, AWS, Streamlit</li>
+            <li>Docker, Git, Redis</li>
+          </ul>
+        </div>
+
+        <div class="skill-card p-6">
+          <div class="flex items-center gap-4">
+            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+              Data
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold font-['Space_Grotesk']">Analytics & UI</h4>
+              <p class="text-xs text-slate-300">Dashboards & design.</p>
+            </div>
+          </div>
+          <ul class="mt-4 text-xs text-slate-200 list-disc pl-5 space-y-1.5">
+            <li>Power BI, Tableau</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+
+        <div class="skill-card p-6">
+          <div class="flex items-center gap-4">
+            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+              Soft
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold font-['Space_Grotesk']">Soft Skills</h4>
+              <p class="text-xs text-slate-300">Team & delivery.</p>
+            </div>
+          </div>
+          <ul class="mt-4 text-xs text-slate-200 list-disc pl-5 space-y-1.5">
+            <li>Problem Solving, Collaboration</li>
+            <li>Management, Communication</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="mt-12 text-center text-sm text-gray-500">
-      © <span id="year"></span> Deepesh Raj A Y — Built with Tailwind
+    <!-- PROJECTS -->
+    <section id="projects" class="space-y-6 js-fade scroll-mt-24">
+
+      <div>
+        <h3 class="text-3xl font-['Space_Grotesk'] font-semibold mt-2">Projects</h3>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 js-fade-stagger">
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\EduCurate.jpg"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FastAPI</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">WhisperX</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">yt-dlp</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FFmpeg </span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Gemini 2.5 Pro</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Neo4j </span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">PostgreSQL</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">SQLAlchemy</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Pydantic</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Next.js 14</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">TypeScript</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">React 18</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">React Three Fiber</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">ShadCN UI</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">EduCurate — AI-Powered Personalized Learning Assistant</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            EduCurate is an agentic AI-driven personalized learning assistant that creates student-specific topic roadmaps, recommends curated learning content, generates Bloom-taxonomy questions, and evaluates student answers using a knowledge-graph–based Auto Evaluation System (AES).
+          </p>
+
+          <a href="https://github.com/Yukivid/Personalised-Learning-Assistant"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+
+          </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\Autonomous.png"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FastAPI</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Streamlit</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">ChromaDB</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Sentence Transformers (all-MiniLM-L6-v2)</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Google Gemini API</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Autonomous QA Agent for Test Case and Script Generation</h4>
+          <p class="text-xs text-slate-400 mt-1">
+             An intelligent, autonomous QA agent that constructs a "testing brain" from project documentation. The system ingests support documents (product specifications, UI/UX guidelines, mock APIs) alongside HTML structure to generate comprehensive test cases and executable Selenium scripts.
+          </p>
+
+          <a href="https://github.com/Yukivid/oceanai-testing-brain"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+
+        </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\Recommender.png"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">HTML</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">CSS</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">JavaScript</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FastAPI</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Google Gemini 2.5 Flash</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">sentence-transformers</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">SQLite</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Render</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AI-Powered E-commerce Product Recommender</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            The AI-Powered E-commerce Product Recommender is an intelligent system built using FastAPI and Google Gemini LLM. It analyzes user queries and recommends relevant products along with human-like explanations — just like a smart shopping assistant
+          </p>
+          <a href="https://github.com/Yukivid/ecommerce_recommender"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 js-fade-stagger">
+        
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\MeetMate.jpg"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">GPT-4o</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Azure Speech-to-text</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">HTML</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tailwind CSS</span>  
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Javascript</span>                      
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">MeetMate – AI Meeting Assistant</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            MeetMate is an AI-powered virtual meeting assistant that lets users quickly generate detailed summaries and documents about their meetings.
+          </p>
+          <a href="https://github.com/Yukivid/Meet_Mate"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\AskLegal.jpeg"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">RAG</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">inLegalBERT</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FAISS</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Gemini API</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Upstash-Redis</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">HTML</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tailwind CSS</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Javascript</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AskLegal.ai – AI Legal Assistant</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            AI assistant to help with legal queries, with a RAG model trained on the Indian Penal Code and real case documents to provide accurate, in-depth solutions for court cases.
+          </p>
+          <a href="https://github.com/Yukivid/AILegalAssistant"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\Coding.png"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">OpenAI API</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">LangChain</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Code Analysis</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Static Linting</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">CLI Tool</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AI Coding Assistant</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            An intelligent assistant designed to simplify programming by offering real-time help on coding queries, giving precise answers, and generating code snippets to boost productivity.
+          </p>
+          <a href="https://github.com/Yukivid/AICodingAssistant"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 js-fade-stagger">
+
+        
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\Driving.jpg"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Flask</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">OpenCV</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FER</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">pyttsx3</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">YOLO</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">dlib</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Smart Safe Driving App</h4>
+          <p class="text-xs text-slate-400 mt-1">
+             Developed a real-time AI-driven driver monitoring system to enhance road safety, using Eye Aspect Ratio (EAR) for drowsiness detection, YOLOv4 for phone usage monitoring, and FER for emotion recognition, integrated with a Flask dashboard and audio alerts.
+          </p>
+          <a href="https://github.com/Yukivid/Smart_safe_driving_app"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\Water.jpeg"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">IoT</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">ESP8266</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Atmega328P</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">ThingSpeak</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Scikit-Learn</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">IoT Water Quality Monitoring</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            The Water Quality & BPA Prediction App is designed to monitor water quality in real-time and predict the risk of Bisphenol A (BPA) contamination. It integrates IoT sensors, microcontrollers, and AI models to ensure safe water consumption by providing live insights and alerts.
+          </p>
+          <a href="https://github.com/Yukivid/Water-Quality-prediction-BPA-prediction"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-40">
+            <img src="thumbnails\EVXpert.png"
+            alt="Thumbnail"
+            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tensorflow</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Scikit-Learn</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">React Native</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tailwind CSS</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Node.js</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">AES Encryption</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Rolling Key</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">EVXpert – AI EV Companion App</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            EVXpert is an AI-driven companion app designed for EV enthusiasts. It uses machine learning on real-time data obtained from sensors to provide battery health monitoring, predictive maintenance, trip-based battery planning, and advanced bike security.
+          </p>
+          <a href="https://github.com/Yukivid/EVXpert_EV_companion"
+          target="_blank"
+          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
+          <span>View on GitHub</span>
+          </a>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section id="achievements" class="relative js-fade scroll-mt-24">
+      <div class="hero-frame relative overflow-hidden rounded-3xl border border-white/10 bg-bg-soft px-6 py-10 sm:px-10 sm:py-12 shadow-soft">
+          <!-- LEFT -->
+        <div class="js-fade-stagger">
+          <h3 class="text-3xl font-['Space_Grotesk'] font-semibold text-primary mt-1">Achievements & Certifications.</h3>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Patent Publication – Sep 2025</h4>
+          <p class="text-xs text-slate-400 mt-1 text-justify">
+            IoT & ML-based Unauthorized Animal Detection System (App. No. 202541079463).
+          </p>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Raptee CodeVolt’25 Semifinalist</h4>
+          <p class="text-xs text-slate-400 mt-1 text-justify">
+            AI-powered EV Companion App for predictive maintenance & vehicle security.
+          </p>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">GPT4o: Code & Conquer – Nov 2024</h4>
+          <p class="text-xs text-slate-400 mt-1 text-justify">
+            Certification for applied problem-solving & AI model fine-tuning.
+          </p>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AWS Certified Cloud Practitioner, Solutions Architect & Developer – Jun 2025</h4>
+          <p class="text-xs text-slate-400 mt-1 text-justify">
+            Completed Udemy certifications in AWS fundamentals, architecture & development.
+          </p>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Spoken Tutorial – IIT Bombay</h4>
+          <p class="text-xs text-slate-400 mt-1 text-justify">
+            Certifications in C, C++ & Python under IIT Bombay Spoken Tutorial program.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="mt-6 js-fade scroll-mt-24">
+      <div class="contact-strip p-7 sm:p-10 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+
+        <div class="max-w-lg">
+          <h3 class="text-3xl font-['Space_Grotesk'] font-semibold text-primary mt-1">Let's talk.</h3>
+          <p class="mt-2 text-sm text-slate-300">
+            I’m open to internships and collaborations.
+          </p>
+
+          <div class="mt-3 space-y-1 text-xs text-slate-200">
+            <p><span class="font-semibold">Email:</span> deepeshrajay@gmail.com</p>
+            <p><span class="font-semibold">GitHub:</span> github.com/Yukivid</p>
+            <p><span class="font-semibold">LinkedIn:</span> linkedin.com/in/deepesh-raj-a-y-915266271</p>
+          </div>
+        </div>
+
+        <form class="w-full lg:max-w-md space-y-3">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input class="flex-1 rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
+                   placeholder="Your Name" />
+            <input class="flex-1 rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
+                   placeholder="Your Email" />
+          </div>
+
+          <textarea rows="3"
+            class="w-full rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
+            placeholder="Message"></textarea>
+
+          <button type="button"
+            class="pill-badge px-6 py-2.5 rounded-full text-sm font-medium text-slate-50 btn-tap">
+            Send
+          </button>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 text-center text-xs text-slate-500">
+      © <span id="year"></span> Deepesh Raj A Y — Built with Tailwind CSS
     </footer>
+
   </main>
 
-  <!-- Script -->
-  <script src="script.js"></script>
+  <!-- Footer JS: year, mobile nav, scroll animations -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav with smooth slide
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    navToggle.addEventListener('click', () => {
+      const hidden = mobileNav.classList.contains('hidden');
+      if (hidden) {
+        mobileNav.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          mobileNav.style.transformOrigin = 'top';
+          mobileNav.classList.remove('opacity-0', 'scale-y-95');
+          mobileNav.classList.add('opacity-100', 'scale-y-100');
+        });
+      } else {
+        mobileNav.classList.add('opacity-0', 'scale-y-95');
+        mobileNav.classList.remove('opacity-100', 'scale-y-100');
+        setTimeout(() => mobileNav.classList.add('hidden'), 180);
+      }
+    });
+
+    // Scroll-based fade-up animation (moderate)
+    const fadeSections = document.querySelectorAll('.js-fade');
+    const fadeStaggers = document.querySelectorAll('.js-fade-stagger');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2
+      }
+    );
+
+    fadeSections.forEach((el) => observer.observe(el));
+    fadeStaggers.forEach((el) => observer.observe(el));
+    const OFFSET = 90; // adjust if needed based on your sticky navbar height
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId.length < 2) return; // ignore empty #
+
+      e.preventDefault();
+      const section = document.querySelector(targetId);
+      const topPos = section.offsetTop - OFFSET;
+
+      window.scrollTo({
+        top: topPos,
+        behavior: "smooth"
+      });
+
+      // close mobile nav automatically
+      if (!mobileNav.classList.contains("hidden")) {
+        mobileNav.classList.add("hidden");
+      }
+    });
+  });
+  </script>
+
 </body>
 </html>
-
