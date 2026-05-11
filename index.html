@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,9 @@
   <!-- Load Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -37,7 +40,7 @@
     body {
       font-family: 'Sora', sans-serif;
       background:
-      radial-gradient(circle at top left, #0c1c2a 0, #050816 45%, #020617 100%);
+        radial-gradient(circle at top left, #0c1c2a 0, #050816 45%, #020617 100%);
     }
 
     /* Decorative hero frame */
@@ -50,14 +53,17 @@
       border: 1px solid rgba(148, 163, 253, 0.10);
       border-radius: 22px;
     }
+
     .hero-frame::before {
       top: -40px;
       left: -40px;
     }
+
     .hero-frame::after {
       bottom: -40px;
       right: -40px;
     }
+
     .hero-grid-line {
       position: absolute;
       inset: 18%;
@@ -66,21 +72,22 @@
     }
 
     .pill-badge {
-      background: linear-gradient(135deg, rgba(148,163,253,0.08), rgba(37,99,235,0.12));
-      border: 1px solid rgba(148,163,253,0.2);
+      background: linear-gradient(135deg, rgba(148, 163, 253, 0.08), rgba(37, 99, 235, 0.12));
+      border: 1px solid rgba(148, 163, 253, 0.2);
     }
 
     .skill-card {
       background: #0B1020;
       border-radius: 22px;
       border: 1px solid rgba(148, 163, 253, 0.18);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
+
     .skill-card:hover {
       transform: translateY(-4px);
       border-color: rgba(148, 163, 253, 0.35);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.55);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
     }
 
     .skill-circle {
@@ -90,8 +97,8 @@
     .project-card {
       background: #0B1020;
       border-radius: 14px;
-      border: 1px solid rgba(148,163,253,0.18);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+      border: 1px solid rgba(148, 163, 253, 0.18);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       transform-origin: center top;
       padding: 1rem
@@ -99,15 +106,15 @@
 
     .project-card:hover {
       transform: translateY(-6px) scale(1.01);
-      border-color: rgba(66,228,255,0.45);
-      box-shadow: 0 16px 34px rgba(0,0,0,0.6);
+      border-color: rgba(66, 228, 255, 0.45);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
     }
 
     .contact-strip {
       background: #0A0F1F;
       border-radius: 30px;
-      border: 1px solid rgba(148,163,253,0.18);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      border: 1px solid rgba(148, 163, 253, 0.18);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
     }
 
     /* Nav link underline microinteraction */
@@ -115,6 +122,7 @@
       position: relative;
       padding-bottom: 2px;
     }
+
     .nav-link::after {
       content: "";
       position: absolute;
@@ -125,6 +133,7 @@
       background: #51ACC5;
       transition: width 0.25s ease;
     }
+
     .nav-link:hover::after {
       width: 100%;
     }
@@ -133,9 +142,10 @@
     .btn-tap {
       transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease, border-color 0.2s ease;
     }
+
     .btn-tap:active {
       transform: translateY(1px) scale(0.98);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
     /* Scroll fade-up animation (moderate) */
@@ -144,25 +154,39 @@
       transform: translateY(28px);
       transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     }
+
     .js-fade.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
     /* Slight stagger for children, if needed */
-    .js-fade-stagger > * {
+    .js-fade-stagger>* {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .js-fade-stagger.is-visible > * {
+
+    .js-fade-stagger.is-visible>* {
       opacity: 1;
       transform: translateY(0);
     }
-    .js-fade-stagger.is-visible > *:nth-child(1) { transition-delay: 0.02s; }
-    .js-fade-stagger.is-visible > *:nth-child(2) { transition-delay: 0.06s; }
-    .js-fade-stagger.is-visible > *:nth-child(3) { transition-delay: 0.10s; }
-    .js-fade-stagger.is-visible > *:nth-child(4) { transition-delay: 0.14s; }
+
+    .js-fade-stagger.is-visible>*:nth-child(1) {
+      transition-delay: 0.02s;
+    }
+
+    .js-fade-stagger.is-visible>*:nth-child(2) {
+      transition-delay: 0.06s;
+    }
+
+    .js-fade-stagger.is-visible>*:nth-child(3) {
+      transition-delay: 0.10s;
+    }
+
+    .js-fade-stagger.is-visible>*:nth-child(4) {
+      transition-delay: 0.14s;
+    }
   </style>
 
   <!-- GitHub Icon Definition -->
@@ -174,6 +198,7 @@
   </svg>
 
 </head>
+
 <body class="min-h-screen text-slate-100 antialiased">
 
   <!-- HEADER -->
@@ -181,7 +206,8 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
 
       <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-2xl bg-[#51ACC5] flex items-center justify-center text-bg-main font-semibold text-lg btn-tap">
+        <div
+          class="w-11 h-11 rounded-2xl bg-[#51ACC5] flex items-center justify-center text-bg-main font-semibold text-lg btn-tap">
           DR
         </div>
         <div class="leading-tight">
@@ -198,23 +224,26 @@
         <a href="#skills" class="nav-link hover:text-primary transition-colors">Skills</a>
         <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
         <a href="#achievements" class="nav-link hover:text-primary transition-colors">Achievements</a>
-        <a href="#contact" class="pill-badge px-4 py-2 rounded-full text-xs font-medium text-slate-50 transition-colors btn-tap">
+        <a href="#contact"
+          class="pill-badge px-4 py-2 rounded-full text-xs font-medium text-slate-50 transition-colors btn-tap">
           Contact
         </a>
       </nav>
 
-      <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-xl border border-white/15 text-slate-200 btn-tap">
+      <button id="navToggle"
+        class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-xl border border-white/15 text-slate-200 btn-tap">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h10" />
         </svg>
       </button>
     </div>
 
-    <div id="mobileNav" class="md:hidden hidden border-t border-white/5 bg-bg-main/95 backdrop-blur font-['Space_Grotesk'] origin-top scale-y-95 opacity-0 transition-all duration-200 ease-out">
+    <div id="mobileNav"
+      class="md:hidden hidden border-t border-white/5 bg-bg-main/95 backdrop-blur font-['Space_Grotesk'] origin-top scale-y-95 opacity-0 transition-all duration-200 ease-out">
       <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm text-slate-200">
         <a href="#about" class="py-1">About</a>
         <a href="#experience" class="py-1">Experience</a>
-        <a href="#skills" class="py-1">Skills</a>        
+        <a href="#skills" class="py-1">Skills</a>
         <a href="#projects" class="py-1">Projects</a>
         <a href="#achievements" class="py-1">Achievements</a>
         <a href="#contact" class="py-1">Contact</a>
@@ -227,7 +256,8 @@
 
     <!-- HERO -->
     <section id="about" class="relative js-fade scroll-mt-24">
-      <div class="hero-frame relative overflow-hidden rounded-3xl border border-white/10 bg-bg-soft px-6 py-10 sm:px-10 sm:py-12 shadow-soft">
+      <div
+        class="hero-frame relative overflow-hidden rounded-3xl border border-white/10 bg-bg-soft px-6 py-10 sm:px-10 sm:py-12 shadow-soft">
 
         <div class="hero-grid-line hidden sm:block"></div>
 
@@ -246,25 +276,30 @@
             </h3>
 
             <p class="mt-5 text-sm text-slate-300 text-justify">
-              Welcome to my portfolio! I’m an aspiring Software Engineer specializing in AI/ML, currently pursuing my B.Tech in Computer Science and Engineering at VIT Chennai. I work on building LLM-driven systems, agentic AI workflows, predictive models, and computer vision pipelines, with hands-on experience in RAG, NLP, CNN , and AI-powered applications.
+              Welcome to my portfolio! I’m an aspiring Software Engineer specializing in AI/ML, currently pursuing my
+              B.Tech in Computer Science and Engineering at VIT Chennai. I work on building LLM-driven systems, agentic
+              AI workflows, predictive models, and computer vision pipelines, with hands-on experience in RAG, NLP, CNN
+              , and AI-powered applications.
             </p>
             <p class="mt-5 text-sm text-slate-300 text-justify">
-              Here, you’ll find my projects in machine learning, deep learning, computer vision, and intelligent automation. I’m driven by problem-solving, clean system design, and building reliable, production-ready AI solutions. I enjoy creating solutions that are intuitive, scalable, and impactful.
+              Here, you’ll find my projects in machine learning, deep learning, computer vision, and intelligent
+              automation. I’m driven by problem-solving, clean system design, and building reliable, production-ready AI
+              solutions. I enjoy creating solutions that are intuitive, scalable, and impactful.
             </p>
 
             <div class="mt-7 flex flex-wrap gap-3">
               <a href="A Y Deepesh Raj.pdf" target="_blank" download
-                 class="pill-badge text-xs px-4 py-2.5 rounded-full font-medium text-slate-50 flex items-center gap-2 btn-tap">
+                class="pill-badge text-xs px-4 py-2.5 rounded-full font-medium text-slate-50 flex items-center gap-2 btn-tap">
                 Download Resume
               </a>
 
               <a href="https://github.com/Yukivid" target="_blank"
-                 class="px-4 py-2.5 rounded-full border border-slate-600/50 text-xs text-slate-200 hover:border-primary hover:text-primary transition-colors btn-tap">
+                class="px-4 py-2.5 rounded-full border border-slate-600/50 text-xs text-slate-200 hover:border-primary hover:text-primary transition-colors btn-tap">
                 GitHub
               </a>
 
               <a href="https://linkedin.com/in/deepesh-raj-a-y-915266271" target="_blank"
-                 class="px-4 py-2.5 rounded-full border border-slate-600/50 text-xs text-slate-200 hover:border-primary hover:text-primary transition-colors btn-tap">
+                class="px-4 py-2.5 rounded-full border border-slate-600/50 text-xs text-slate-200 hover:border-primary hover:text-primary transition-colors btn-tap">
                 LinkedIn
               </a>
             </div>
@@ -277,7 +312,7 @@
               </div>
               <div class="rounded-xl bg-bg-card border border-white/10 px-4 py-3 shadow-soft">
                 <p class="text-[0.6rem] uppercase tracking-[0.18em] text-slate-400">CGPA</p>
-                <p class="mt-2 font-medium">8.2 / 10</p>
+                <p class="mt-2 font-medium">8.26 / 10</p>
               </div>
               <div class="rounded-xl bg-bg-card border border-white/10 px-4 py-3 shadow-soft">
                 <p class="text-[0.6rem] uppercase tracking-[0.18em] text-slate-400">Primary Stack</p>
@@ -330,8 +365,20 @@
 
         <div class="mt-7">
           <div class="mt-4 rounded-2xl bg-bg-soft border border-white/10 p-4 shadow-soft">
-            <p class="text-sm font-semibold">Software Developer Intern</p>
-            <p class="text-xs text-slate-400 mt-0.5">FLSmidth — June–Aug 2024</p>
+            <p class="text-sm font-semibold">AI Developer Intern</p>
+            <p class="text-xs text-slate-400 mt-0.5">Forage AI — Feb 2026 – Present</p>
+            <ul class="mt-3 text-xs text-slate-300 space-y-1.5 list-disc pl-5">
+              <li>Automating end-to-end test cycles with an autonomous test setup system.</li>
+              <li>Building an RL framework for prompt optimization via PPO & human feedback.</li>
+              <li>CI/CD-integrated pipelines for scalable prompt evaluation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-7">
+          <div class="mt-4 rounded-2xl bg-bg-soft border border-white/10 p-4 shadow-soft">
+            <p class="text-sm font-semibold">Software Engineer Intern</p>
+            <p class="text-xs text-slate-400 mt-0.5">FLSmidth — June–Sept 2024</p>
             <ul class="mt-3 text-xs text-slate-300 space-y-1.5 list-disc pl-5">
               <li>Built image processing pipelines for defect detection.</li>
               <li>Automated anomaly localization with OpenCV watershed.</li>
@@ -340,7 +387,7 @@
           </div>
         </div>
 
-        
+
       </div>
 
     </section>
@@ -353,7 +400,8 @@
 
         <div class="skill-card p-6">
           <div class="flex items-center gap-4">
-            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+            <div
+              class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
               Core
             </div>
             <div>
@@ -368,7 +416,8 @@
 
         <div class="skill-card p-6">
           <div class="flex items-center gap-4">
-            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+            <div
+              class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
               ML
             </div>
             <div>
@@ -384,7 +433,8 @@
 
         <div class="skill-card p-6">
           <div class="flex items-center gap-4">
-            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+            <div
+              class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
               CV
             </div>
             <div>
@@ -400,7 +450,8 @@
 
         <div class="skill-card p-6">
           <div class="flex items-center gap-4">
-            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+            <div
+              class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
               Dev
             </div>
             <div>
@@ -416,7 +467,8 @@
 
         <div class="skill-card p-6">
           <div class="flex items-center gap-4">
-            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+            <div
+              class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
               Data
             </div>
             <div>
@@ -432,7 +484,8 @@
 
         <div class="skill-card p-6">
           <div class="flex items-center gap-4">
-            <div class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
+            <div
+              class="skill-circle w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-white">
               Soft
             </div>
             <div>
@@ -460,9 +513,41 @@
 
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\EduCurate.jpg"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\Repomind.png" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+          </div>
+          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FastAPI</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">React</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">LangChain</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FAISS</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Groq LLM</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tree-sitter</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Graph-RAG</span>
+          </div>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">RepoMind – GraphRAG-Based AI System for Codebase
+            Intelligence</h4>
+          <p class="text-xs text-slate-400 mt-1">
+            AI-powered codebase intelligence tool combining FAISS vector search with call-graph traversal for
+            natural-language Q&A over repositories. Features a Tree-sitter ingestion pipeline extracting symbols, call
+            graphs, and dataflow artifacts across multiple languages, with static code health analysis and contributor
+            tracking.
+          </p>
+          <a href="https://github.com/Yukivid/RepoMind-GraphRAG-Based-AI-System-for-Codebase-Intelligence"
+            target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
+          </a>
+        </article>
+
+        <article class="project-card p-4">
+          <div class="relative rounded-xl overflow-hidden h-32">
+            <img src="thumbnails\EduCurate.jpg" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
@@ -481,112 +566,92 @@
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">React Three Fiber</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">ShadCN UI</span>
           </div>
-          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">EduCurate — AI-Powered Personalized Learning Assistant</h4>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">EduCurate — AI-Powered Personalized Learning
+            Assistant</h4>
           <p class="text-xs text-slate-400 mt-1">
-            EduCurate is an agentic AI-driven personalized learning assistant that creates student-specific topic roadmaps, recommends curated learning content, generates Bloom-taxonomy questions, and evaluates student answers using a knowledge-graph–based Auto Evaluation System (AES).
+            EduCurate is an agentic AI-driven personalized learning assistant that creates student-specific topic
+            roadmaps, recommends curated learning content, generates Bloom-taxonomy questions, and evaluates student
+            answers using a knowledge-graph–based Auto Evaluation System (AES).
           </p>
 
-          <a href="https://github.com/Yukivid/Personalised-Learning-Assistant"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/Personalised-Learning-Assistant" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
 
-          </article>
+        </article>
 
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\Autonomous.png"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\Autonomous.png" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FastAPI</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Streamlit</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">ChromaDB</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Sentence Transformers (all-MiniLM-L6-v2)</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Sentence Transformers
+              (all-MiniLM-L6-v2)</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Google Gemini API</span>
           </div>
-          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Autonomous QA Agent for Test Case and Script Generation</h4>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Autonomous QA Agent for Test Case and Script
+            Generation</h4>
           <p class="text-xs text-slate-400 mt-1">
-             An intelligent, autonomous QA agent that constructs a "testing brain" from project documentation. The system ingests support documents (product specifications, UI/UX guidelines, mock APIs) alongside HTML structure to generate comprehensive test cases and executable Selenium scripts.
+            An intelligent, autonomous QA agent that constructs a "testing brain" from project documentation. The system
+            ingests support documents (product specifications, UI/UX guidelines, mock APIs) alongside HTML structure to
+            generate comprehensive test cases and executable Selenium scripts.
           </p>
 
-          <a href="https://github.com/Yukivid/oceanai-testing-brain"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/oceanai-testing-brain" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
 
-        </article>
-
-        <article class="project-card p-4">
-          <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\Recommender.png"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
-          </div>
-          <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">HTML</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">CSS</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">JavaScript</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">FastAPI</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Google Gemini 2.5 Flash</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">sentence-transformers</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">SQLite</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Render</span>
-          </div>
-          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AI-Powered E-commerce Product Recommender</h4>
-          <p class="text-xs text-slate-400 mt-1">
-            The AI-Powered E-commerce Product Recommender is an intelligent system built using FastAPI and Google Gemini LLM. It analyzes user queries and recommends relevant products along with human-like explanations — just like a smart shopping assistant
-          </p>
-          <a href="https://github.com/Yukivid/ecommerce_recommender"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
-          </a>
         </article>
 
       </div>
 
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 js-fade-stagger">
-        
+
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\MeetMate.jpg"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\MeetMate.jpg" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">GPT-4o</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Azure Speech-to-text</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Azure
+              Speech-to-text</span>
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">HTML</span>
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tailwind CSS</span>  
-            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Javascript</span>                      
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Tailwind CSS</span>
+            <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Javascript</span>
           </div>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">MeetMate – AI Meeting Assistant</h4>
           <p class="text-xs text-slate-400 mt-1">
-            MeetMate is an AI-powered virtual meeting assistant that lets users quickly generate detailed summaries and documents about their meetings.
+            MeetMate is an AI-powered virtual meeting assistant that lets users quickly generate detailed summaries and
+            documents about their meetings.
           </p>
-          <a href="https://github.com/Yukivid/Meet_Mate"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/Meet_Mate" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
         </article>
 
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\AskLegal.jpeg"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\AskLegal.jpeg" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
@@ -601,21 +666,22 @@
           </div>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AskLegal.ai – AI Legal Assistant</h4>
           <p class="text-xs text-slate-400 mt-1">
-            AI assistant to help with legal queries, with a RAG model trained on the Indian Penal Code and real case documents to provide accurate, in-depth solutions for court cases.
+            AI assistant to help with legal queries, with a RAG model trained on the Indian Penal Code and real case
+            documents to provide accurate, in-depth solutions for court cases.
           </p>
-          <a href="https://github.com/Yukivid/AILegalAssistant"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/AILegalAssistant" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
         </article>
 
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\Coding.png"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\Coding.png" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
@@ -627,13 +693,15 @@
           </div>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AI Coding Assistant</h4>
           <p class="text-xs text-slate-400 mt-1">
-            An intelligent assistant designed to simplify programming by offering real-time help on coding queries, giving precise answers, and generating code snippets to boost productivity.
+            An intelligent assistant designed to simplify programming by offering real-time help on coding queries,
+            giving precise answers, and generating code snippets to boost productivity.
           </p>
-          <a href="https://github.com/Yukivid/AICodingAssistant"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/AICodingAssistant" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
         </article>
 
@@ -641,12 +709,11 @@
 
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 js-fade-stagger">
 
-        
+
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\Driving.jpg"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\Driving.jpg" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
@@ -659,21 +726,23 @@
           </div>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Smart Safe Driving App</h4>
           <p class="text-xs text-slate-400 mt-1">
-             Developed a real-time AI-driven driver monitoring system to enhance road safety, using Eye Aspect Ratio (EAR) for drowsiness detection, YOLOv4 for phone usage monitoring, and FER for emotion recognition, integrated with a Flask dashboard and audio alerts.
+            Developed a real-time AI-driven driver monitoring system to enhance road safety, using Eye Aspect Ratio
+            (EAR) for drowsiness detection, YOLOv4 for phone usage monitoring, and FER for emotion recognition,
+            integrated with a Flask dashboard and audio alerts.
           </p>
-          <a href="https://github.com/Yukivid/Smart_safe_driving_app"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/Smart_safe_driving_app" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
         </article>
 
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\Water.jpeg"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\Water.jpeg" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">IoT</span>
@@ -685,21 +754,23 @@
           </div>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">IoT Water Quality Monitoring</h4>
           <p class="text-xs text-slate-400 mt-1">
-            The Water Quality & BPA Prediction App is designed to monitor water quality in real-time and predict the risk of Bisphenol A (BPA) contamination. It integrates IoT sensors, microcontrollers, and AI models to ensure safe water consumption by providing live insights and alerts.
+            The Water Quality & BPA Prediction App is designed to monitor water quality in real-time and predict the
+            risk of Bisphenol A (BPA) contamination. It integrates IoT sensors, microcontrollers, and AI models to
+            ensure safe water consumption by providing live insights and alerts.
           </p>
-          <a href="https://github.com/Yukivid/Water-Quality-prediction-BPA-prediction"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/Water-Quality-prediction-BPA-prediction" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
         </article>
 
         <article class="project-card p-4">
           <div class="relative rounded-xl overflow-hidden h-32">
-            <img src="thumbnails\EVXpert.png"
-            alt="Thumbnail"
-            class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+            <img src="thumbnails\EVXpert.png" alt="Thumbnail"
+              class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
           </div>
           <div class="flex flex-wrap gap-1 mt-3 text-[0.65rem] text-slate-300">
             <span class="px-2 py-0.5 rounded-full bg-slate-900/60 border border-slate-600/60">Python</span>
@@ -713,13 +784,16 @@
           </div>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">EVXpert – AI EV Companion App</h4>
           <p class="text-xs text-slate-400 mt-1">
-            EVXpert is an AI-driven companion app designed for EV enthusiasts. It uses machine learning on real-time data obtained from sensors to provide battery health monitoring, predictive maintenance, trip-based battery planning, and advanced bike security.
+            EVXpert is an AI-driven companion app designed for EV enthusiasts. It uses machine learning on real-time
+            data obtained from sensors to provide battery health monitoring, predictive maintenance, trip-based battery
+            planning, and advanced bike security.
           </p>
-          <a href="https://github.com/Yukivid/EVXpert_EV_companion"
-          target="_blank"
-          class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
-          <svg class="w-4 h-4"><use href="#github-icon"></use></svg>
-          <span>View on GitHub</span>
+          <a href="https://github.com/Yukivid/EVXpert_EV_companion" target="_blank"
+            class="mt-3 inline-flex items-center gap-2 text-xs text-slate-300 hover:text-primary transition-colors">
+            <svg class="w-4 h-4">
+              <use href="#github-icon"></use>
+            </svg>
+            <span>View on GitHub</span>
           </a>
         </article>
 
@@ -728,10 +802,12 @@
     </section>
 
     <section id="achievements" class="relative js-fade scroll-mt-24">
-      <div class="hero-frame relative overflow-hidden rounded-3xl border border-white/10 bg-bg-soft px-6 py-10 sm:px-10 sm:py-12 shadow-soft">
-          <!-- LEFT -->
+      <div
+        class="hero-frame relative overflow-hidden rounded-3xl border border-white/10 bg-bg-soft px-6 py-10 sm:px-10 sm:py-12 shadow-soft">
+        <!-- LEFT -->
         <div class="js-fade-stagger">
-          <h3 class="text-3xl font-['Space_Grotesk'] font-semibold text-primary mt-1">Achievements & Certifications.</h3>
+          <h3 class="text-3xl font-['Space_Grotesk'] font-semibold text-primary mt-1">Achievements & Certifications.
+          </h3>
           <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">Patent Publication – Sep 2025</h4>
           <p class="text-xs text-slate-400 mt-1 text-justify">
             IoT & ML-based Unauthorized Animal Detection System (App. No. 202541079463).
@@ -744,7 +820,8 @@
           <p class="text-xs text-slate-400 mt-1 text-justify">
             Certification for applied problem-solving & AI model fine-tuning.
           </p>
-          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AWS Certified Cloud Practitioner, Solutions Architect & Developer – Jun 2025</h4>
+          <h4 class="mt-3 text-sm font-['Space_Grotesk'] font-semibold">AWS Certified Cloud Practitioner, Solutions
+            Architect & Developer – Jun 2025</h4>
           <p class="text-xs text-slate-400 mt-1 text-justify">
             Completed Udemy certifications in AWS fundamentals, architecture & development.
           </p>
@@ -776,18 +853,19 @@
 
         <form class="w-full lg:max-w-md space-y-3">
           <div class="flex flex-col sm:flex-row gap-3">
-            <input class="flex-1 rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
-                   placeholder="Your Name" />
-            <input class="flex-1 rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
-                   placeholder="Your Email" />
+            <input
+              class="flex-1 rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
+              placeholder="Your Name" />
+            <input
+              class="flex-1 rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
+              placeholder="Your Email" />
           </div>
 
           <textarea rows="3"
             class="w-full rounded-xl bg-bg-soft border border-white/10 px-3 py-2.5 text-sm text-slate-100 focus:border-primary focus:outline-none focus:ring-0"
             placeholder="Message"></textarea>
 
-          <button type="button"
-            class="pill-badge px-6 py-2.5 rounded-full text-sm font-medium text-slate-50 btn-tap">
+          <button type="button" class="pill-badge px-6 py-2.5 rounded-full text-sm font-medium text-slate-50 btn-tap">
             Send
           </button>
         </form>
@@ -847,31 +925,30 @@
 
     fadeSections.forEach((el) => observer.observe(el));
     fadeStaggers.forEach((el) => observer.observe(el));
-    let OFFSET = window.innerWidth < 640 ? 50 : 90; // adjust if needed based on your sticky navbar height
+    const OFFSET = 90; // adjust if needed based on your sticky navbar height
 
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId.length < 2) return; // ignore empty #
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.length < 2) return; // ignore empty #
 
-      e.preventDefault();
-      const section = document.querySelector(targetId);
-      const topPos = section.offsetTop - OFFSET;
+        e.preventDefault();
+        const section = document.querySelector(targetId);
+        const topPos = section.offsetTop - OFFSET;
 
-      window.scrollTo({
-        top: topPos,
-        behavior: "smooth"
+        window.scrollTo({
+          top: topPos,
+          behavior: "smooth"
+        });
+
+        // close mobile nav automatically
+        if (!mobileNav.classList.contains("hidden")) {
+          mobileNav.classList.add("hidden");
+        }
       });
-
-      // close mobile nav automatically
-      if (!mobileNav.classList.contains("hidden")) {
-        mobileNav.classList.add("hidden");
-      }
     });
-  });
   </script>
 
 </body>
+
 </html>
-
-
